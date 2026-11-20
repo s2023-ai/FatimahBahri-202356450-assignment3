@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "title": "Travel Phone Holder",
+    "category": "Product Design",
+    "shortDescription": "A compact 3D-printed phone holder for comfortable, practical, hands-free travel.",
+    "concept": "A compact, adjustable phone holder designed for travelers who need hands-free access to their devices. The design adapts to different environments, including luggage, tables, and airplane seats, while focusing on portability and stability.",
+    "designProcess": "Research → Sketching → 3D Modeling → Joint Development → 3D Printing → Prototype Testing → Design Refinement",
+    "tools": [
+      "Blender",
+      "Autodesk Fusion",
+      "3D Printing"
+    ],
+    "date": "2026-01-01",
+    "selected": true,
+    "images": [
+      "assets/images/projects/phone-holder-1.webp",
+      "assets/images/projects/phone-holder-2.webp"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Nabeeh",
+    "category": "Smart Safety Concept",
+    "shortDescription": "A digital twin concept that detects camel crossings and alerts drivers to nearby hazards.",
+    "concept": "NABEEH is a digital twin-based road safety concept designed to reduce camel-vehicle collisions on Saudi highways. The system uses real-time detection and a mobile application to warn drivers of nearby hazards through clear visual and audio alerts.",
+    "designProcess": "Problem Identification → User Research → Benchmarking → UI/UX Design → Interactive Prototyping → Usability Testing",
+    "additionalDetails": "Developed an interactive mobile prototype featuring live risk maps, audio and visual alerts, hazard reporting, bilingual support, and dark mode to improve accessibility and minimize driver distraction.",
+    "tools": [
+      "Figma",
+      "Maze",
+      "User Surveys",
+      "Benchmarking"
+    ],
+    "date": "2026-02-01",
+    "selected": true,
+    "images": [
+      "assets/images/projects/nabeeh.webp"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Light of the Stars",
+    "category": "Game Development",
+    "shortDescription": "Follow the stars through an atmospheric 3D journey inspired by the desert landscape of AlUla.",
+    "concept": "Light of the Stars is an exploration-based 3D game set in a nighttime desert inspired by AlUla. Players guide a lost traveler through the environment, collecting six stars to unlock the final path to safety. The experience combines environmental storytelling, lighting, and interactive gameplay.",
+    "designProcess": "Story Development → Environment Modeling → Unity Integration → Gameplay Programming → Lighting & Audio → Testing",
+    "tools": [
+      "Blender",
+      "Unity",
+      "C#"
+    ],
+    "date": "2026-03-01",
+    "selected": true,
+    "images": [
+      "assets/images/projects/light-of-the-stars-1.webp",
+      "assets/images/projects/light-of-the-stars-2.webp"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "MushRoomy Restaurant",
+    "category": "3D Environment Design",
+    "shortDescription": "A fantasy-themed restaurant inspired by nature and mushroom shapes.",
+    "concept": "MushRoomy is a fantasy-themed restaurant inspired by nature and mushroom shapes. The design combines soft pastel colors, organic forms, and playful details to create a cozy, magical dining environment.",
+    "designProcess": "Concept Development → 3D Modeling → Materials & Texturing → Lighting → Rendering",
+    "tools": [
+      "Blender"
+    ],
+    "date": "2026-04-01",
+    "selected": false,
+    "images": [
+      "assets/images/projects/mushroomy-1.webp",
+      "assets/images/projects/mushroomy-2.webp"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Night Wolf",
+    "category": "Wearable Design",
+    "shortDescription": "A wearable character head prototype inspired by a fantasy wolf character.",
+    "concept": "Night Wolf is a wearable character head prototype inspired by a fantasy wolf character. The project explores how cardboard and simple crafting materials can be transformed into a detailed three-dimensional form through structural design and surface finishing.",
+    "designProcess": "Ideation & Sketching → Internal Structure → Facial Features → Surface Development → Painting & Finishing",
+    "additionalDetails": "Developed a lightweight cardboard structure reinforced with wire, then built the facial features using layered cardboard. Paper mâché was applied to refine the shape and create a smoother surface before painting.",
+    "tools": [
+      "Cardboard",
+      "Paper Mâché",
+      "Wire",
+      "Hot Glue Gun",
+      "Craft Knife",
+      "Acrylic Paint & Brushes"
+    ],
+    "date": "2026-05-01",
+    "selected": false,
+    "images": [
+      "assets/images/projects/night-wolf-1.webp",
+      "assets/images/projects/night-wolf-2.webp",
+      "assets/images/projects/night-wolf-3.webp"
+    ]
+  }
+]

@@ -182,3 +182,25 @@ nts · CSS
     justify-content: space-between;
   }
 }
+
+.footer-quote {
+  max-width: 520px;
+  margin: 4rem auto 2rem;
+  text-align: center;
+}
+
+#quote-text {
+  font-family: "Satisfy", cursive;
+  font-size: 1.8rem;
+  line-height: 1.4;
+}
+
+#quote-author {
+  color: var(--burgundy);
+  margin-top: 0.75rem;
+}
+
+#quote-refresh:hover {
+  background: #A66369;
+  color: #FAF9F6;
+}
