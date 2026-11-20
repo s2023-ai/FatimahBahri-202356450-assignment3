@@ -163,93 +163,128 @@ Pages · CSS
 }
  
 /* ---------- Selected projects ---------- */
+/* ==========================================================
+   Selected Projects
+   Aligns the heading, project cards, and CTA button.
+   The class names match the markup generated in home.js.
+   ========================================================== */
+
 .work {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 4rem clamp(1rem, 4vw, 3.5rem);
+  padding: 5rem clamp(1rem, 4vw, 3.5rem) 7rem;
 }
- 
+
 .work-title {
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
+  color: var(--accent);
   font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
 }
- 
+
 .work-title .script {
   color: var(--accent);
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
 }
- 
+
+/* Three cards aligned in one row */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
- 
-.card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-  text-decoration: none;
+
+/* Complete project card */
+.project-card {
+  min-width: 0;
+  overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
- 
-.card:hover {
+
+.project-card:hover {
   border-color: var(--accent-hover);
   transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem rgb(92 23 29 / 10%);
 }
- 
-/* Image zooms inside a fixed frame on hover */
-.card-media {
-  aspect-ratio: 8 / 5;
-  overflow: hidden;
-  border-radius: 14px;
-}
- 
-.card-media img {
-  width: 100%;
+
+/* Makes the whole card clickable */
+.project-card-link {
+  display: block;
   height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Project image */
+.project-card-link img {
+  display: block;
+  width: 100%;
+  height: 11rem;
   object-fit: cover;
+  background: #e9e6e2;
   transition: transform 0.5s ease;
 }
- 
-.card:hover .card-media img {
+
+.project-card:hover .project-card-link img {
   transform: scale(1.06);
 }
- 
-.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 1rem 0.25rem 0.25rem;
+
+/* Text inside the card */
+.project-card-content {
+  padding: 0.85rem 0.85rem 1rem;
 }
- 
-.card-body h3 {
-  font-size: 1.35rem;
+
+.project-category {
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+  font-size: 0.65rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
- 
-.card-body p {
+
+.project-card-content h3 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.project-card-content p:last-child {
   margin: 0;
-  font-size: 1rem;
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
- 
-.card-body .card-meta {
-  font-size: 0.85rem;
-  opacity: 0.75;
-}
- 
-.card-meta span {
-  margin-right: 0.5rem;
-  font-weight: 600;
-}
- 
+
+/* Explore My Work button */
 .work-cta {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
+}
+
+/* Responsive layout */
+@media (max-width: 760px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-link img {
+    height: 13rem;
+  }
+
+  .work-cta {
+    justify-content: flex-start;
+  }
 }

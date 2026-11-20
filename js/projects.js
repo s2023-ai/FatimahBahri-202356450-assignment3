@@ -1,189 +1,130 @@
-/* ==========================================================
-   projects.js — Projects page
-   Features:
-   1. Filter by category (buttons) AND sort (dropdown), combined
-   2. Choices are remembered (State -> localStorage)
-   3. Opens a project directly from a link like projects.html#project-2
-   4. Image lightbox with prev/next and keyboard arrows
-   Needs: state.js and data/projects.js loaded first.
+ /* ==========================================================
+   projects.js (data) — single source of truth for all projects.
+   Used by: home page cards (featured ones) and the Projects page
+   (filter + sort). Plain JS instead of JSON so it also works when
+   the site is opened directly from the file system.
+ 
+   Fields
+   - filter:   group used by the filter buttons ("product" | "ux" | "3d")
+   - category: label shown on the card
+   - date:     YYYY-MM, used for sorting  (TODO: replace with real dates)
+   - featured: true = shown in "Selected Projects" on the home page
+   - cover:    image used on the home card
    ========================================================== */
  
-const FILTERS = [
-  { key: "all", label: "All" },
-  { key: "product", label: "Product Design" },
-  { key: "ux", label: "UX/UI" },
-  { key: "3d", label: "3D & Game" },
+const IMG = "assets/images/projects/";
+ 
+const PROJECTS = [
+  {
+    id: 1,
+    title: "Travel Phone Holder",
+    filter: "product",
+    category: "Product Design",
+    date: "2025-03",
+    featured: true,
+    summary: "A compact 3D-printed phone holder for comfortable, practical, hands-free travel.",
+    concept:
+      "A compact, adjustable phone holder designed for travelers who need hands-free access to their devices. The design adapts to different environments, including luggage, tables, and airplane seats, while focusing on portability and stability.",
+    process: [
+      "Research", "Sketching", "3D Modeling", "Joint Development",
+      "3D Printing", "Prototype Testing", "Design Refinement",
+    ],
+    details: "",
+    tools: ["Blender", "Autodesk Fusion", "3D Printing"],
+    cover: { src: IMG + "phone-holder-1.webp", alt: "3D-printed travel phone holder attached to a suitcase handle" },
+    images: [
+      { src: IMG + "phone-holder-1.webp", alt: "Phone holder mounted on a suitcase handle holding a phone" },
+      { src: IMG + "phone-holder-2.webp", alt: "Close-up of the phone holder gripping a phone" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Nabeeh",
+    filter: "ux",
+    category: "Smart Safety Concept",
+    date: "2025-05",
+    featured: true,
+    summary: "A digital twin concept that detects camel crossings and alerts drivers to nearby hazards.",
+    concept:
+      "NABEEH is a digital twin-based road safety concept designed to reduce camel-vehicle collisions on Saudi highways. The system uses real-time detection and a mobile application to warn drivers of nearby hazards through clear visual and audio alerts.",
+    process: [
+      "Problem Identification", "User Research", "Benchmarking",
+      "UI/UX Design", "Interactive Prototyping", "Usability Testing",
+    ],
+    details:
+      "Developed an interactive mobile prototype featuring live risk maps, audio and visual alerts, hazard reporting, bilingual support, and dark mode to improve accessibility and minimize driver distraction.",
+    tools: ["Figma", "Maze", "User Surveys", "Benchmarking"],
+    cover: { src: IMG + "nabeeh-1.webp", alt: "Nabeeh infographic showing how the camel detection system works" },
+    images: [
+      { src: IMG + "nabeeh-1.webp", alt: "Nabeeh infographic: from camel detection to driver alert" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Light of the Stars",
+    filter: "3d",
+    category: "Game Development",
+    date: "2025-09",
+    featured: true,
+    summary: "Follow the stars through an atmospheric 3D journey inspired by the desert landscape of AlUla.",
+    concept:
+      "Light of the Stars is an exploration-based 3D game set in a nighttime desert inspired by AlUla. Players guide a lost traveler through the environment, collecting six stars to unlock the final path to safety. The experience combines environmental storytelling, lighting, and interactive gameplay.",
+    process: [
+      "Story Development", "Environment Modeling", "Unity Integration",
+      "Gameplay Programming", "Lighting & Audio", "Testing",
+    ],
+    details: "",
+    tools: ["Blender", "Unity", "C#"],
+    cover: { src: IMG + "light-of-the-stars-1.webp", alt: "Red jeep and a traveler in a desert camp from the game" },
+    images: [
+      { src: IMG + "light-of-the-stars-1.webp", alt: "Game scene: a traveler standing near a red jeep in the desert" },
+      { src: IMG + "light-of-the-stars-2.webp", alt: "Game scene: red jeep and a tent with smoke at night" },
+    ],
+  },
+  {
+    id: 4,
+    title: "MushRoomy Restaurant",
+    filter: "3d",
+    category: "3D Environment",
+    date: "2025-11",
+    featured: false,
+    summary: "A fantasy mushroom-shaped restaurant with soft pastel colors and a cozy, magical mood.",
+    concept:
+      "MushRoomy is a fantasy-themed restaurant inspired by nature and mushroom shapes. The design combines soft pastel colors, organic forms, and playful details to create a cozy, magical dining environment.",
+    process: [
+      "Concept Development", "3D Modeling", "Materials & Texturing",
+      "Lighting", "Rendering",
+    ],
+    details: "",
+    tools: ["Blender"],
+    cover: { src: IMG + "mushroomy-1.webp", alt: "Mushroom-shaped restaurant surrounded by trees at night" },
+    images: [
+      { src: IMG + "photo6-mushroomy.webp", alt: "MushRoomy restaurant entrance with two giant mushrooms" },
+      { src: IMG + "photo7-mushroomy.webp", alt: "MushRoomy restaurant archway and dining area" },
+    ],
+  },
+  {
+    id: 5,
+    title: "Night Wolf",
+    filter: "product",
+    category: "Physical Prototype",
+    date: "2026-01",
+    featured: false,
+    summary: "A wearable wolf head built from cardboard, wire, and paper mâché.",
+    concept:
+      "Night Wolf is a wearable character head prototype inspired by a fantasy wolf character. The project explores how cardboard and simple crafting materials can be transformed into a detailed three-dimensional form through structural design and surface finishing.",
+    process: [
+      "Ideation & Sketching", "Internal Structure", "Facial Features",
+      "Surface Development", "Painting & Finishing",
+    ],
+    details:
+      "Developed a lightweight cardboard structure reinforced with wire, then built the facial features using layered cardboard. Paper mâché was applied to refine the shape and create a smoother surface before painting.",
+    tools: ["Cardboard", "Paper Mâché", "Wire", "Hot Glue Gun", "Craft Knife", "Acrylic Paint & Brushes"],
+    cover: { src: IMG + "night-wolf-1.webp", alt: "Finished black Night Wolf head" },
+    images: [
+      { src: IMG + "photo8-nightwolf1.webp", alt: "Finished black Night Wolf head" },
+      { src: IMG + "photo9-nightwolf2.webp", alt: "Night Wolf head in a natural cardboard finish" },
+      { src: IMG + "photo10-nightwolf3.webp", alt: "Night Wolf head in progress" },
+    ],
+  },
 ];
- 
-/** Sorting rules. Dates are "YYYY-MM" strings, so text comparison works. */
-const SORTERS = {
-  featured: (a, b) => a.id - b.id,
-  newest: (a, b) => b.date.localeCompare(a.date),
-  oldest: (a, b) => a.date.localeCompare(b.date),
-  az: (a, b) => a.title.localeCompare(b.title),
-};
- 
-const listEl = document.getElementById("project-list");
-const filterBar = document.getElementById("filters");
-const sortSelect = document.getElementById("sort");
-const countEl = document.getElementById("result-count");
- 
-const pad = (n) => String(n).padStart(2, "0");
- 
-/* ---------- State (restored from localStorage, with safe fallbacks) ---------- */
-const view = {
-  filter: State.get("filter", "all"),
-  sort: State.get("sort", "featured"),
-};
-if (!FILTERS.some((f) => f.key === view.filter)) view.filter = "all";
-if (!(view.sort in SORTERS)) view.sort = "featured";
- 
-/** Step 1: keep matching projects. Step 2: sort them. */
-function getVisibleProjects() {
-  return PROJECTS
-    .filter((p) => view.filter === "all" || p.filter === view.filter)
-    .sort(SORTERS[view.sort]);
-}
- 
-/* ---------- Rendering ---------- */
-function thumbTemplate(project, image, index) {
-  return `
-    <button class="thumb" type="button" data-project="${project.id}" data-index="${index}"
-            aria-label="View larger: ${image.alt}">
-      <img src="${image.src}" alt="${image.alt}" loading="lazy">
-    </button>`;
-}
- 
-function projectTemplate(p) {
-  return `
-    <article class="project" id="project-${p.id}">
-      <header class="project-head">
-        <span class="project-num">${pad(p.id)}</span>
-        <h2 class="project-title">${p.title}</h2>
-      </header>
-      <div class="project-body">
-        <div class="project-text">
-          <h3>Concept</h3>
-          <p>${p.concept}</p>
-          <h3>Design process</h3>
-          <p>${p.process.join(" → ")}</p>
-          ${p.details ? `<p>${p.details}</p>` : ""}
-          <h3>Tools</h3>
-          <p>${p.tools.join(", ")}</p>
-        </div>
-        <div class="project-outcome">
-          <h3>Final outcome</h3>
-          <div class="outcome-images">
-            ${p.images.map((img, i) => thumbTemplate(p, img, i)).join("")}
-          </div>
-        </div>
-      </div>
-    </article>`;
-}
- 
-function render() {
-  const visible = getVisibleProjects();
- 
-  listEl.innerHTML = visible.length
-    ? visible.map(projectTemplate).join("")
-    : `<p class="empty">No projects in this category yet.</p>`;
- 
-  countEl.textContent = `Showing ${visible.length} of ${PROJECTS.length} projects`;
- 
-  // Mark the active filter button
-  filterBar.querySelectorAll(".chip").forEach((chip) => {
-    chip.setAttribute("aria-pressed", String(chip.dataset.filter === view.filter));
-  });
-}
- 
-/* ---------- Controls ---------- */
-filterBar.innerHTML = FILTERS
-  .map((f) => `<button class="chip" type="button" data-filter="${f.key}">${f.label}</button>`)
-  .join("");
- 
-filterBar.addEventListener("click", (event) => {
-  const chip = event.target.closest(".chip");
-  if (!chip) return;
-  view.filter = chip.dataset.filter;
-  State.set("filter", view.filter);
-  render();
-});
- 
-sortSelect.value = view.sort;
-sortSelect.addEventListener("change", () => {
-  view.sort = sortSelect.value;
-  State.set("sort", view.sort);
-  render();
-});
- 
-/* ---------- Lightbox ---------- */
-const lightbox = document.getElementById("lightbox");
-const lbImage = document.getElementById("lightbox-image");
-const lbCount = document.getElementById("lightbox-count");
-const lbPrev = document.getElementById("lightbox-prev");
-const lbNext = document.getElementById("lightbox-next");
- 
-const gallery = { images: [], index: 0 };
- 
-function showLightboxImage() {
-  const { images, index } = gallery;
-  lbImage.src = images[index].src;
-  lbImage.alt = images[index].alt;
-  lbCount.textContent = `${index + 1} / ${images.length}`;
- 
-  // Hide arrows when there is only one image
-  const single = images.length < 2;
-  lbPrev.hidden = single;
-  lbNext.hidden = single;
-}
- 
-/** Move forwards (+1) or backwards (-1), wrapping around at the ends. */
-function stepLightbox(direction) {
-  const total = gallery.images.length;
-  gallery.index = (gallery.index + direction + total) % total;
-  showLightboxImage();
-}
- 
-listEl.addEventListener("click", (event) => {
-  const thumb = event.target.closest(".thumb");
-  if (!thumb) return;
- 
-  const project = PROJECTS.find((p) => p.id === Number(thumb.dataset.project));
-  gallery.images = project.images;
-  gallery.index = Number(thumb.dataset.index);
-  showLightboxImage();
-  lightbox.showModal();
-});
- 
-lbPrev.addEventListener("click", () => stepLightbox(-1));
-lbNext.addEventListener("click", () => stepLightbox(1));
-lightbox.querySelector(".dialog-close").addEventListener("click", () => lightbox.close());
- 
-lightbox.addEventListener("click", (event) => {
-  if (event.target === lightbox) lightbox.close(); // click on the backdrop
-});
- 
-lightbox.addEventListener("keydown", (event) => {
-  if (gallery.images.length < 2) return;
-  if (event.key === "ArrowLeft") stepLightbox(-1);
-  if (event.key === "ArrowRight") stepLightbox(1);
-});
- 
-/* ---------- Deep link: projects.html#project-3 ---------- */
-function scrollToHashProject() {
-  const match = location.hash.match(/^#project-(\d+)$/);
-  if (!match) return;
- 
-  const project = PROJECTS.find((p) => p.id === Number(match[1]));
-  if (!project) return;
- 
-  // If the saved filter hides this project, show everything so the link works
-  if (!getVisibleProjects().includes(project)) {
-    view.filter = "all";
-    render();
-  }
-  document.getElementById(`project-${project.id}`)?.scrollIntoView();
-}
- 
-render();
-scrollToHashProject();
