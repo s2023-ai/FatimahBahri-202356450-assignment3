@@ -1,0 +1,61 @@
+About · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Fatimah Bahri</title>
+  <meta name="description" content="About Fatimah Bahri, an Integrated Design student working across product design, UX/UI, and 3D.">
+ 
+  <!-- Apply the saved theme BEFORE the page paints (prevents a white flash) -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = JSON.parse(localStorage.getItem("fb:theme")); } catch (e) {}
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = saved || (prefersDark ? "dark" : "light");
+    })();
+  </script>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Satisfy&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <site-header></site-header>
+ 
+  <main class="page">
+    <h1 class="page-title">About <span class="script">Me</span></h1>
+ 
+    <div class="about-text">
+      <!-- TODO: personalise this text in your own words -->
+      <p>
+        I’m Fatimah Bahri, an Integrated Design student passionate about creating
+        meaningful experiences through design, technology, and making.
+      </p>
+      <p>
+        My work moves between physical and digital: from 3D-printed products and
+        cardboard prototypes to mobile app concepts, 3D environments, and game
+        development.
+      </p>
+ 
+      <h2>Tools I use</h2>
+      <p>Figma, Illustrator, Canva, Blender, Autodesk Fusion, Unity, and C#.</p>
+ 
+      <a class="btn" href="projects.html">See my work</a>
+    </div>
+  </main>
+ 
+  <site-footer></site-footer>
+ 
+  <script src="js/state.js"></script>
+  <script src="js/components/site-header.js"></script>
+  <script src="js/components/site-footer.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+</body>
+</html>
