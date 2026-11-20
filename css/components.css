@@ -1,0 +1,184 @@
+nts · CSS
+/* ==========================================================
+   components.css — reusable UI pieces (navbar, buttons, greeting)
+   ========================================================== */
+ 
+/* ---------- Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--nav-height);
+  padding: 0 clamp(1rem, 4vw, 3.5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.3s ease;
+}
+ 
+.logo {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: transform 0.25s ease;
+}
+ 
+.logo:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+ 
+.nav-links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ 
+/* Link with an underline that grows from the left on hover */
+.nav-links a {
+  position: relative;
+  padding: 0.25rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+ 
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--accent-hover);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+ 
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--accent-hover);
+}
+ 
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+ 
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.25s ease;
+}
+ 
+.theme-toggle:hover {
+  background: var(--accent-hover);
+  color: var(--btn-text);
+  transform: rotate(20deg);
+}
+ 
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  color: var(--btn-text);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--btn-bg);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+ 
+.btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+ 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+ 
+/* ---------- Visitor greeting (lives inside the navbar) ---------- */
+.visitor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+ 
+.visitor input {
+  width: 9.5rem;
+  padding: 0.4rem 0.8rem;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+}
+ 
+.visitor .btn {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
+ 
+.link-btn {
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+ 
+.link-btn:hover {
+  color: var(--accent-hover);
+}
+ 
+/* ---------- Responsive navbar ---------- */
+@media (max-width: 860px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding-block: 0.75rem;
+  }
+ 
+  .nav-right {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+  }
+}

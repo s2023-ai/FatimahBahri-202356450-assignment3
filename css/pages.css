@@ -1,0 +1,87 @@
+/* ==========================================================
+   pages.css — page/section specific styles
+   (hero now; add work, contact, about, projects as you build them)
+   ========================================================== */
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  max-width: var(--page-width);
+  min-height: calc(100vh - var(--nav-height));
+  margin: 0 auto;
+  padding: 3rem clamp(1rem, 4vw, 3.5rem);
+}
+
+.hero-greeting {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 2rem;
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+}
+
+/* "Bahri" sits lower and to the right, like a signature */
+.hero-title .script {
+  align-self: flex-end;
+  margin-top: -0.1em;
+  font-size: 1.1em;
+  color: var(--text);
+}
+
+.hero-intro {
+  max-width: 28ch;
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+/* Visual with hover effect */
+.hero-visual {
+  position: relative;
+  margin: 0;
+}
+
+.hero-visual img {
+  width: 100%;
+  border-radius: var(--radius);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-visual:hover img {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.hero-visual figcaption {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  padding: 0.9rem 1.4rem;
+  color: #faf9f6;
+  font-size: 1.05rem;
+  background: #5c171d;
+  border-radius: 14px;
+  transition: transform 0.4s ease, background-color 0.3s ease;
+}
+
+.hero-visual:hover figcaption {
+  background: var(--accent-hover);
+  transform: translateX(10px);
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+}
