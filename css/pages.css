@@ -8,13 +8,13 @@ Pages · CSS
 /* ---------- Hero ---------- */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(520px, 1.2fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: clamp(3rem, 6vw, 7rem);
   max-width: var(--page-width);
   min-height: calc(100vh - var(--nav-height));
   margin: 0 auto;
-  padding: 3rem clamp(1rem, 4vw, 3.5rem);
+  padding: 4rem clamp(2rem, 5vw, 4rem);
 }
  
 .hero-greeting {
@@ -24,17 +24,18 @@ Pages · CSS
 }
  
 .hero-title {
-  display: flex;
-  flex-direction: column;
+  display: block;
   margin: 0.5rem 0 2rem;
-  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 0.95;
 }
- 
-/* "Bahri" sits lower and to the right, like a signature */
+
 .hero-title .script {
-  align-self: flex-end;
-  margin-top: -0.1em;
-  font-size: 1.1em;
+  display: block;
+  margin-top: 0.25rem;
+  margin-left: clamp(4rem, 8vw, 8rem);
+  font-size: 1.05em;
+  white-space: nowrap;
 }
  
 .hero-intro {
@@ -43,115 +44,106 @@ Pages · CSS
   font-size: clamp(1.1rem, 2vw, 1.4rem);
 }
  
-/* Hero visual: three stacked layers (scene, hedgehog, robot).
-   Each layer reacts to hover/focus: the image moves and its own
-   tag fades in. Adjust the % values to match your Figma layout. */
+/* ---------- Hero image layers ---------- */
+
 .hero-visual {
   position: relative;
   aspect-ratio: 10 / 7;
+  overflow: visible;
 }
- 
+
 .hero-item {
   position: absolute;
   cursor: pointer;
 }
- 
+
 .hero-item img {
+  display: block;
   width: 100%;
   height: auto;
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
- 
+
+/* Original image positions */
+
 .hero-scene {
   top: 0;
   left: 0;
-  width: 98%;
+  width: 77%;
   z-index: 1;
 }
- 
+
 .hero-scene img {
   border-radius: var(--radius);
 }
- 
+
 .hero-hedgehog {
   bottom: 0;
   left: -1%;
-  width: 33%;
+  width: 24%;
   z-index: 2;
 }
- 
+
 .hero-robot {
   right: 0;
   bottom: 0;
-  width: 32%;
+  width: 24%;
   z-index: 2;
 }
- 
-/* Hover / keyboard focus: raise the layer, move the image */
-.hero-item:hover,
-.hero-item:focus-visible {
-  z-index: 3;
-}
- 
+
+/* Hover: enlarge only the image */
+
 .hero-scene:hover img,
-.hero-scene:focus-visible img {
-  transform: scale(1.02);
-}
- 
+.hero-scene:focus-visible img,
 .hero-hedgehog:hover img,
-.hero-hedgehog:focus-visible img {
-  transform: translateX(14px) rotate(4deg);
-}
- 
-/* Robot pivots from the top, like a swing */
-.hero-robot img {
-  transform-origin: 50% 8%;
-}
- 
+.hero-hedgehog:focus-visible img,
 .hero-robot:hover img,
 .hero-robot:focus-visible img {
-  transform: rotate(-6deg);
+  transform: scale(1.04);
 }
- 
-/* Tag: hidden until its layer is hovered or focused */
+
+/* Caption */
+
 .hero-tag {
   position: absolute;
+  z-index: 10;
   padding: 0.7rem 1.1rem;
   color: #faf9f6;
   font-size: 0.95rem;
   line-height: 1.3;
   white-space: nowrap;
-  background: #5c171d;
+  background: var(--accent);
   border-radius: 12px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
 }
- 
+
 .hero-item:hover .hero-tag,
 .hero-item:focus-visible .hero-tag {
   opacity: 1;
   transform: translateY(0);
 }
- 
-/* Tag positions (as in the Figma hover states) */
+
+/* Caption positions */
+
 .hero-scene .hero-tag {
   top: 1.5rem;
   left: 1.5rem;
 }
- 
+
 .hero-hedgehog .hero-tag {
   bottom: 4%;
   left: 12%;
 }
- 
+
 .hero-robot .hero-tag {
   right: 0;
   bottom: 6%;
 }
  
-@media (max-width: 860px) {
+@media (max-width: 760px) {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -159,6 +151,9 @@ Pages · CSS
  
   .hero-visual {
     order: -1;
+  }
+    .hero-title .script {
+    margin-left: 4rem;
   }
 }
  

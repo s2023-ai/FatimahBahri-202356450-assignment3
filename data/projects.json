@@ -13,6 +13,7 @@
     ],
     "date": "2026-01-01",
     "selected": true,
+    "thumbnail": "assets/images/selected-work/phone-holder-selected.webp",
     "images": [
       "assets/images/projects/phone-holder-1.webp",
       "assets/images/projects/phone-holder-2.webp"
@@ -34,6 +35,7 @@
     ],
     "date": "2026-02-01",
     "selected": true,
+    "thumbnail": "assets/images/selected-work/nabeeh-selected.webp",
     "images": [
       "assets/images/projects/nabeeh-1.png"
     ]
@@ -52,6 +54,7 @@
     ],
     "date": "2026-03-01",
     "selected": true,
+    "thumbnail": "assets/images/selected-work/light-of-the-stars-selected.webp",
     "images": [
       "assets/images/projects/light-of-the-stars-1.webp",
       "assets/images/projects/light-of-the-stars-2.webp"
@@ -99,3 +102,4 @@
     ]
   }
 ]
+
