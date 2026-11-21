@@ -1,6 +1,5 @@
 /* ==========================================================
-   home.js — builds the "Selected Projects" cards on the home page
-   from the shared PROJECTS data (only items with featured: true).
+   home.js — builds Selected Projects cards on the home page
    ========================================================== */
 
 const cardList = document.getElementById("work-cards");
@@ -8,25 +7,36 @@ const cardList = document.getElementById("work-cards");
 /** Zero-pad the project number: 1 -> "01". */
 const pad = (n) => String(n).padStart(2, "0");
 
-/** HTML for one card. The whole card is a link to that project on the Projects page. */
+/** HTML for one selected project card. */
 function cardTemplate(project) {
   return `
-    <li>
-      <a class="card" href="projects.html#project-${project.id}">
-        <div class="card-media">
-          <img src="${project.cover.src}" alt="${project.cover.alt}"
-               width="800" height="500" loading="lazy">
-        </div>
-        <div class="card-body">
-          <p class="card-meta"><span>${pad(project.id)}</span> ${project.category}</p>
+    <li class="project-card">
+      <a class="project-card-link" href="projects.html#project-${project.id}">
+        <img
+          src="${project.thumbnail}"
+          alt="${project.title}"
+          width="800"
+          height="500"
+          loading="lazy"
+        >
+
+        <div class="project-card-content">
+          <p class="project-category">
+            ${pad(project.id)} ${project.category}
+          </p>
+
           <h3>${project.title}</h3>
+
           <p>${project.summary}</p>
         </div>
       </a>
-    </li>`;
+    </li>
+  `;
 }
 
-cardList.innerHTML = PROJECTS
-  .filter((project) => project.featured)
-  .map(cardTemplate)
-  .join("");
+if (cardList) {
+  cardList.innerHTML = PROJECTS
+    .filter((project) => project.selected)
+    .map(cardTemplate)
+    .join("");
+}

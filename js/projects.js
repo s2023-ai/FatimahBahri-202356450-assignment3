@@ -13,7 +13,7 @@
    ========================================================== */
  
 const IMG = "assets/images/projects/";
- 
+const SELECTED_IMG = "assets/images/selected-work/";
 const PROJECTS = [
   {
     id: 1,
@@ -22,6 +22,8 @@ const PROJECTS = [
     category: "Product Design",
     date: "2025-03",
     featured: true,
+    selected: true,
+    thumbnail: SELECTED_IMG + "phone-holder-selected.webp",
     summary: "A compact 3D-printed phone holder for comfortable, practical, hands-free travel.",
     concept:
       "A compact, adjustable phone holder designed for travelers who need hands-free access to their devices. The design adapts to different environments, including luggage, tables, and airplane seats, while focusing on portability and stability.",
@@ -44,6 +46,8 @@ const PROJECTS = [
     category: "Smart Safety Concept",
     date: "2025-05",
     featured: true,
+    selected: true,
+    thumbnail: SELECTED_IMG + "nabeeh-selected.webp",
     summary: "A digital twin concept that detects camel crossings and alerts drivers to nearby hazards.",
     concept:
       "NABEEH is a digital twin-based road safety concept designed to reduce camel-vehicle collisions on Saudi highways. The system uses real-time detection and a mobile application to warn drivers of nearby hazards through clear visual and audio alerts.",
@@ -66,6 +70,8 @@ const PROJECTS = [
     category: "Game Development",
     date: "2025-09",
     featured: true,
+    selected: true,
+    thumbnail: SELECTED_IMG + "light-of-the-stars-selected.webp",
     summary: "Follow the stars through an atmospheric 3D journey inspired by the desert landscape of AlUla.",
     concept:
       "Light of the Stars is an exploration-based 3D game set in a nighttime desert inspired by AlUla. Players guide a lost traveler through the environment, collecting six stars to unlock the final path to safety. The experience combines environmental storytelling, lighting, and interactive gameplay.",
