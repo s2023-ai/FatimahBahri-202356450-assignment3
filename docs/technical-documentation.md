@@ -1,16 +1,7 @@
 My Personal Portfolio
-Technical Documentation
-1. Project Overview
-My Personal Portfolio is a responsive website designed to present my background, skills, and design projects. The website combines UI/UX design, web development, 3D modeling, and digital fabrication work in one organized platform.
-
-The main goals are to:
-- Present my design identity and experience.
-- Display selected projects clearly.
-- Provide project descriptions and visual previews.
-- Offer contact information.
-- Maintain a consistent and responsive design across all pages.
-2. Website Structure
-The website is divided into separate HTML, CSS, JavaScript, and asset files. Each file has a specific responsibility, which makes the project easier to manage and update.
+Project Overview
+My Personal Portfolio is a responsive website that presents my background, skills, and design projects. It combines UI/UX design, web development, 3D modeling, and digital fabrication work in one organized platform.
+Website Structure
 My Personal Portfolio/
 │
 ├── index.html
@@ -33,14 +24,12 @@ My Personal Portfolio/
     ├── images/
     ├── icons/
     └── fonts/
-
-3. HTML Files
-The HTML files represent the main pages of the portfolio:
-- index.html contains the Home page and the main introduction.
-- about.html contains personal information, skills, and design interests.
-- projects.html displays the portfolio projects.
-- contact.html contains contact information and communication options.
-Each page includes the shared header and footer components:
+HTML Files
+- index.html: Home page and introduction.
+- about.html: Personal information, skills, and interests.
+- projects.html: Project cards and project information.
+- contact.html: Contact information and communication options.
+Each page uses shared components:
 <site-header></site-header>
 
 <main class="projects-page">
@@ -48,34 +37,29 @@ Each page includes the shared header and footer components:
 </main>
 
 <site-footer></site-footer>
-
-The <site-header> and <site-footer> elements are custom reusable components. They allow the same navigation bar and footer to appear on every page without repeating the complete HTML code.
+site-header and site-footer are reusable custom elements. They reduce duplicated HTML and keep the navigation and footer consistent across all pages.
 CSS Files
-The CSS files are separated based on their function:
-- base.css contains global styles, colors, typography, and CSS variables.
-- components.css contains reusable elements such as the header, footer, buttons, and project cards.
-- pages.css contains styles specific to each page.
-For example, CSS variables are defined in base.css:
+- base.css: Global styles, typography, colors, and CSS variables.
+- components.css: Reusable elements such as the header, footer, buttons, and cards.
+- pages.css: Styles specific to the Home, About, Projects, and Contact pages.
+Example of the design variables:
 :root {
   --background-color: #f8f3e9;
   --text-color: #1e1b18;
   --accent-color: #f3c969;
 }
-
-These variables can then be reused throughout the website:
+The variables are reused throughout the website:
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
-
-This avoids repeating the same color values and makes it easier to update the visual identity.
+This makes the design easier to update and keeps the colors consistent.
 JavaScript Files
-JavaScript files control the interactive features of the website:
-- main.js contains general website interactions.
-- header.js generates the shared header and controls the theme switcher.
-- footer.js generates the shared footer and its interactions.
-- projects.js stores the project data and creates project cards dynamically.
-Example of the project data:
+- main.js: General website interactions.
+- header.js: Header component and theme switcher.
+- footer.js: Footer component and footer interactions.
+- projects.js: Project data and dynamic project card generation.
+Project information is stored in an array:
 const projects = [
   {
     title: "ZARA Website UI Analysis",
@@ -84,10 +68,7 @@ const projects = [
     image: "assets/images/zara-cover.webp"
   }
 ];
-
-The project information is stored as objects inside an array. This makes it possible to add new projects without manually creating a new card in the HTML file.
-
-The project cards are then generated using JavaScript:
+The cards are generated dynamically:
 projects.forEach((project) => {
   const card = document.createElement("article");
 
@@ -100,111 +81,137 @@ projects.forEach((project) => {
 
   projectsGrid.appendChild(card);
 });
-
-The forEach() method loops through every project, creates a new card, adds the project information, and inserts the card into the Projects page.
+The forEach() method loops through every project, creates a card, adds its content, and displays it inside the Projects page.
 Assets Folder
-The assets folder contains the visual resources used by the website:
-- images/ stores project images and visual content.
-- icons/ stores icons used in buttons and navigation.
-- fonts/ stores any custom fonts used in the design.
-Images are optimized and converted to WebP when possible to improve loading speed:
+- images/: Project images and visual content.
+- icons/: Icons used in the interface.
+- fonts/: Custom fonts used in the design.
+Images are optimized using WebP when possible:
 <img
   src="assets/images/project-cover.webp"
   alt="Project preview"
   loading="lazy"
 >
+The alt attribute improves accessibility, while loading="lazy" improves performance by loading images only when needed.
+Main Features
+- Responsive layout for desktop, tablet, and mobile screens.
+- Reusable header and footer components.
+- Dynamic project cards.
+- Light and dark theme switching.
+- Optimized project images.
+- Contact section and interactive elements.
+- Consistent typography, colors, and spacing.
+- External API integration for displaying portfolio-related data.
+- Project filtering by category.
+- Project sorting by date or title.
+- Contact form validation with user-friendly error messages.
+JavaScript Logic
+Theme Switching
+The theme switcher changes the appearance of the website by adding or removing a class from the root HTML element.
+themeButton.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark-mode");
+});
+The classList.toggle() method adds the class if it does not exist and removes it if it already exists. The CSS file then applies the dark theme variables.
+Project Filtering
+Projects can be filtered according to their category:
+const filteredProjects = projects.filter((project) => {
+  return selectedCategory === "All" ||
+         project.category === selectedCategory;
+});
+The filter() method creates a new array containing only the projects that match the selected category. Selecting All displays every project.
+Project Sorting
+The project list can also be sorted by date or title:
+const sortedProjects = [...filteredProjects].sort((a, b) => {
+  return new Date(b.date) - new Date(a.date);
+});
+The spread operator creates a copy of the filtered array before sorting it. This prevents the original project data from being changed.
+External API Integration
+The website connects to an external API to retrieve meaningful portfolio-related information. The request is handled asynchronously using fetch() and async/await.
+async function loadApiData() {
+  try {
+    const response = await fetch(API_URL);
 
-The alt attribute improves accessibility, while loading="lazy" delays loading images until they are needed.
-4. Reusable Components
-The website uses reusable Web Components:
-<site-header></site-header>
-<site-footer></site-footer>
+    if (!response.ok) {
+      throw new Error("The API request failed");
+    }
 
-The header includes:
-- Logo or portfolio name
-- Navigation links
-- Theme switcher
-- Responsive layout
-The footer includes:
-- Personal quote
-- Useful links
-- Copyright information
-- Visit timer
-- Back to Top button
-Using reusable components prevents code repetition and ensures that the header and footer remain consistent across all pages.
-5. CSS Organization
-The CSS files are divided according to their purpose:
-- base.css: global styles, colors, typography, and CSS variables.
-- components.css: header, footer, buttons, cards, and reusable elements.
-- pages.css: styles for Home, About, Projects, and Contact pages.
-- Responsive rules: layouts for tablets and mobile screens.
-CSS variables are used to maintain a consistent visual identity:
-:root {
-  --background-color: #f8f3e9;
-  --text-color: #1e1b18;
-  --accent-color: #f3c969;
+    const data = await response.json();
+    displayApiData(data);
+  } catch (error) {
+    showMessage("The information is currently unavailable.");
+    console.error(error);
+  }
+}
+The try...catch structure handles errors safely. If the API is unavailable, the user sees a clear message instead of an empty section or a broken page.
+Contact Form Validation
+The contact form validates the user input before submitting it.
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  if (!name || !email) {
+    showError("Please complete all required fields.");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    showError("Please enter a valid email address.");
+    return;
+  }
+
+  showSuccess("Your message has been submitted successfully.");
+});
+The preventDefault() method stops the form from refreshing the page. The trim() method removes unnecessary spaces, while the conditions check that the required fields contain valid information.
+Responsive Layout
+CSS Grid and Flexbox are used to create a responsive layout. The project cards change from three columns on large screens to two columns on tablets and one column on mobile devices.
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
-The layout uses Flexbox and CSS Grid to organize content and maintain alignment.
-6. Projects Page
-Project information is stored in projects.js as an array of objects.
-const projects = [
-  {
-    title: "ZARA Website UI Analysis",
-    category: "UI/UX",
-    description: "An analysis of the ZARA website interface.",
-    image: "assets/images/zara-cover.webp"
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-];
+}
 
-JavaScript generates the project cards dynamically and inserts them into the Projects page. This makes it easier to add, remove, or update projects without changing the HTML structure manually.
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+Media queries apply different styles according to the screen width. This prevents content from becoming crowded and improves the mobile user experience.
+Error Handling
+The website includes error handling for the main interactive functions. Errors are handled when:
+- The external API does not respond.
+- The API returns an unsuccessful status.
+- A project image cannot be loaded.
+- Required contact fields are empty.
+- The email format is invalid.
+The user receives a clear message explaining what happened and what action can be taken.
+Accessibility and Performance
+The website follows basic accessibility and performance practices:
+- Descriptive alt text is used for meaningful images.
+- Buttons are used for actions instead of clickable div elements.
+- Keyboard focus styles are provided for interactive elements.
+- WebP images are used to reduce file size.
+- Lazy loading is applied to images below the first screen.
+- CSS variables maintain consistent colors and improve maintainability.
+- Reusable components reduce duplicated code.
+Testing
+The website was tested using Chrome DevTools by checking:
+- Navigation links.
+- Theme switching.
+- Project card generation.
+- Header and footer alignment.
+- Contact interactions.
+- Responsive layouts.
+- Image loading.
+- Horizontal scrolling.
+- Console errors.
+Conclusion
+My Personal Portfolio uses a modular front-end structure that separates content, styling, reusable components, project data, and assets. This structure makes the website easier to maintain, update, and expand with new projects in the future.
 
-The project grid is responsive:
-- Three columns on desktop.
-- Two columns on tablet.
-- One column on mobile.
-7. Recent Technical Improvements
-Several improvements were made during the latest development stages:
-- Corrected the About page class from .page to .about-page.
-- Organized the page-specific CSS and removed repeated styles.
-- Connected projects.js to the Projects page so project cards render correctly.
-- Improved the header alignment.
-- Removed unnecessary navigation arrows.
-- Reduced the excessive spacing between the content and footer.
-- Added shared header and footer components.
-- Improved responsive behavior across different screen sizes.
-8. Image Optimization
-Project images are optimized to improve loading performance.
-
-The website uses:
-- WebP for compressed project images.
-- Lazy loading for images below the first screen.
-- object-fit: cover to maintain consistent image proportions.
-- Different image sizes when necessary for cards and project details.
-Example:
-<img
-  src="assets/images/project-cover.webp"
-  alt="Project preview"
-  loading="lazy"
-/>
-
-9. Theme Switching
-The website supports light and dark modes by adding or removing the dark-mode class from the document.
-document.documentElement.classList.toggle("dark-mode");
-
-Different CSS variables are used for each theme, allowing the colors to change without rewriting every component style.
-10. Testing
-The website was tested using Chrome DevTools.
-
-The testing process included:
-- Checking navigation links.
-- Testing the theme switcher.
-- Verifying project card generation.
-- Testing the Contact dialog.
-- Checking the header and footer on all pages.
-- Testing desktop, tablet, and mobile layouts.
-- Checking for horizontal scrolling.
-- Reviewing image loading and performance.
-- Checking the console for JavaScript errors.
-11. Conclusion
-My Personal Portfolio uses a modular and responsive front-end structure. Reusable components, organized CSS files, dynamic project cards, optimized images, and responsive layouts make the website easier to maintain and improve. The latest updates focused on fixing layout issues, improving navigation, reducing repeated code, and enhancing the overall user experience.
