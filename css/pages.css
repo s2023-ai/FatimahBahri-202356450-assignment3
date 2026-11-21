@@ -474,7 +474,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  margin: 2rem 0;
+  margin: 2rem 0 4rem;
 }
 
 .filters {
@@ -517,16 +517,92 @@
   color: var(--accent);
   font-size: 0.9rem;
 }
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 4rem;
+  margin-top: 1rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* One project per row */
 
 #project-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
   margin-top: 2rem;
 }
 
-.project-page-card {
-  overflow: hidden;
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-info {
+  max-width: 520px;
+}
+
+.project-number {
+  margin: 0 0 0.3rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.project-info h2 {
+  margin: 0 0 1.5rem;
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.project-info h3 {
+  margin: 1.5rem 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.project-category {
+  color: var(--accent);
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+}
+
+.project-details {
+  margin-top: 1.5rem !important;
+}
+
+.project-date {
+  margin-top: 1.5rem !important;
+  color: var(--accent);
+  font-size: 0.75rem !important;
+}
+
+.project-gallery {
+  min-width: 0;
+}
+
+.gallery-label {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.project-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
 }
 
 .project-image-button {
@@ -541,18 +617,75 @@
 .project-image-button img {
   display: block;
   width: 100%;
-  height: 18rem;
+  height: 10rem;
   object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
 }
 
-.project-page-card h2 {
-  margin: 0 0 0.75rem;
-  color: var(--accent);
-  font-size: 1.4rem;
+.project-image-button:hover img {
+  transform: scale(1.03);
+}
+/* ---------- Project image overlay ---------- */
+
+.image-modal {
+  width: min(90vw, 1000px);
+  max-width: none;
+  max-height: 90vh;
+  padding: 3rem;
+  background: transparent;
+  border: 0;
+  overflow: visible;
 }
 
-.project-details-button {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
+.image-modal::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+
+#modal-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: 0 auto;
+  border-radius: 24px;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  background: #000;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  color: #fff;
+  font-size: 2rem;
+  background: var(--accent);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.modal-prev {
+  left: -1rem;
+}
+
+.modal-next {
+  right: -1rem;
 }
