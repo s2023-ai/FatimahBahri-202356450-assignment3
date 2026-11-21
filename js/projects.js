@@ -134,3 +134,116 @@ const PROJECTS = [
     ],
   },
 ];
+/* ==========================================================
+   Projects page rendering
+   ========================================================== */
+
+const projectList = document.getElementById("project-list");
+const filtersBox = document.getElementById("filters");
+const sortSelect = document.getElementById("sort");
+const resultCount = document.getElementById("result-count");
+
+let activeFilter = "all";
+let currentSort = "featured";
+
+function projectCardTemplate(project) {
+  return `
+    <article class="project-card project-page-card" id="project-${project.id}">
+      <button class="project-image-button" type="button">
+        <img
+          src="${project.cover.src}"
+          alt="${project.cover.alt}"
+          loading="lazy"
+        >
+      </button>
+
+      <div class="project-card-content">
+        <p class="project-category">
+          ${project.category}
+        </p>
+
+        <h2>${project.title}</h2>
+
+        <p>${project.summary}</p>
+
+        <button class="btn project-details-button" type="button">
+          View project
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderFilters() {
+  const filterLabels = {
+    all: "All",
+    product: "Product Design",
+    ux: "UX/UI",
+    "3d": "3D and Games"
+  };
+
+  filtersBox.innerHTML = Object.entries(filterLabels)
+    .map(([value, label]) => `
+      <button
+        class="filter-btn ${value === activeFilter ? "is-active" : ""}"
+        type="button"
+        data-filter="${value}">
+        ${label}
+      </button>
+    `)
+    .join("");
+
+  filtersBox.querySelectorAll("[data-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter;
+      renderFilters();
+      renderProjects();
+    });
+  });
+}
+
+function getVisibleProjects() {
+  let visibleProjects =
+    activeFilter === "all"
+      ? [...PROJECTS]
+      : PROJECTS.filter((project) => project.filter === activeFilter);
+
+  if (currentSort === "newest") {
+    visibleProjects.sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  if (currentSort === "oldest") {
+    visibleProjects.sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  if (currentSort === "az") {
+    visibleProjects.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if (currentSort === "featured") {
+    visibleProjects.sort(
+      (a, b) => Number(b.featured) - Number(a.featured)
+    );
+  }
+
+  return visibleProjects;
+}
+
+function renderProjects() {
+  const visibleProjects = getVisibleProjects();
+
+  projectList.innerHTML = visibleProjects
+    .map(projectCardTemplate)
+    .join("");
+
+  resultCount.textContent =
+    `${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}`;
+}
+
+sortSelect.addEventListener("change", () => {
+  currentSort = sortSelect.value;
+  renderProjects();
+});
+
+renderFilters();
+renderProjects();
