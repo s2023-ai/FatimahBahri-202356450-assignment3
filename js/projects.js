@@ -129,7 +129,6 @@ const PROJECTS = [
     cover: { src: IMG + "photo8-nightwolf1.webp", alt: "Finished black Night Wolf head" },
     images: [
       { src: IMG + "photo8-nightwolf1.webp", alt: "Finished black Night Wolf head" },
-      { src: IMG + "photo9-nightwolf2.webp", alt: "Night Wolf head in a natural cardboard finish" },
       { src: IMG + "photo10-nightwolf3.webp", alt: "Night Wolf head in progress" },
     ],
   },
