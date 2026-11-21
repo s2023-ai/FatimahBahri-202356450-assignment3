@@ -9,7 +9,10 @@
 .contact,
 .about-page,
 .projects-page {
-  width: min(100% - 7rem, var(--page-width));
+  width: min(
+    calc(100% - (2 * var(--page-gutter))),
+    var(--page-width)
+  );
   margin-inline: auto;
 }
 
@@ -254,8 +257,8 @@
 /* ---------- Contact ---------- */
 
 .contact {
-  min-height: 100vh;
-  padding-block: 8rem;
+  min-height: auto;
+  padding-block: 8rem 4rem;
 }
 
 .contact-label {

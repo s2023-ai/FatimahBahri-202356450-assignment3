@@ -20,6 +20,7 @@
   /* Layout */
   --nav-height: 80px;
   --page-width: 1200px;
+  --page-gutter: clamp(1rem, 4vw, 3.5rem);
   --radius: 24px;
 
   color-scheme: light;

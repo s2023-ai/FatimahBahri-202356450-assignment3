@@ -5,20 +5,13 @@ nts · CSS
  
 /* ---------- Navbar ---------- */
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: var(--nav-height);
-  padding: 0 clamp(1rem, 4vw, 3.5rem);
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  transition: background-color 0.3s ease;
+  width: 100%;
+  padding-inline: max(
+    var(--page-gutter),
+    calc((100vw - var(--page-width)) / 2)
+  );
 }
- 
+
 .logo {
   color: var(--accent);
   font-size: 2rem;
@@ -80,7 +73,14 @@ nts · CSS
 .nav-links a[aria-current="page"]::after {
   transform: scaleX(1);
 }
- 
+
+/* ---------- Align navbar with page content ---------- */
+
+.navbar {
+  width: 100%;
+  padding-inline: var(--page-gutter);
+}
+
 /* ---------- Theme toggle ---------- */
 .theme-toggle {
   display: grid;
@@ -205,9 +205,12 @@ nts · CSS
 /* ---------- Shared Footer ---------- */
 
 .footer {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 4rem clamp(1rem, 4vw, 3.5rem) 1.5rem;
+  width: min(
+    calc(100% - (2 * var(--page-gutter))),
+    var(--page-width)
+  );
+  margin-inline: auto;
+  padding: 2rem 0 1.5rem;
 }
 
 .footer-inner {
@@ -221,7 +224,7 @@ nts · CSS
 
 .footer-quote {
   max-width: 520px;
-  margin: 0;
+  margin: 1.5rem auto;
   text-align: center;
 }
 
