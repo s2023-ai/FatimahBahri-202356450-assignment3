@@ -74,3 +74,15 @@ function renderVisitor() {
 }
 
 renderVisitor();
+/* ---------- 3. Back to top ---------- */
+
+const backToTopButton = document.getElementById("back-to-top");
+
+if (backToTopButton) {
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}

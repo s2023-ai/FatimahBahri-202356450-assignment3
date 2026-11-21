@@ -1,28 +1,35 @@
-Pages · CSS
 /* ==========================================================
-   pages.css — page/section specific styles
-   Sections: hero, selected projects (add contact, about,
-   projects as you build them)
+   pages.css — page and section specific styles
    ========================================================== */
- 
+
+/* ---------- Shared page spacing ---------- */
+
+.hero,
+.work,
+.contact,
+.about-page,
+.projects-page {
+  width: min(100% - 7rem, var(--page-width));
+  margin-inline: auto;
+}
+
 /* ---------- Hero ---------- */
+
 .hero {
   display: grid;
   grid-template-columns: minmax(320px, 0.8fr) minmax(520px, 1.2fr);
   align-items: center;
   gap: clamp(3rem, 6vw, 7rem);
-  max-width: var(--page-width);
   min-height: calc(100vh - var(--nav-height));
-  margin: 0 auto;
-  padding: 4rem clamp(2rem, 5vw, 4rem);
+  padding-block: 4rem;
 }
- 
+
 .hero-greeting {
   margin: 0;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
 }
- 
+
 .hero-title {
   display: block;
   margin: 0.5rem 0 2rem;
@@ -37,14 +44,14 @@ Pages · CSS
   font-size: 1.05em;
   white-space: nowrap;
 }
- 
+
 .hero-intro {
   max-width: 28ch;
   margin: 0;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
 }
- 
-/* ---------- Hero image layers ---------- */
+
+/* ---------- Hero images ---------- */
 
 .hero-visual {
   position: relative;
@@ -61,10 +68,8 @@ Pages · CSS
   display: block;
   width: 100%;
   height: auto;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s ease;
 }
-
-/* Original image positions */
 
 .hero-scene {
   top: 0;
@@ -91,18 +96,16 @@ Pages · CSS
   z-index: 2;
 }
 
-/* Hover: enlarge only the image */
-
 .hero-scene:hover img,
 .hero-scene:focus-visible img,
 .hero-hedgehog:hover img,
 .hero-hedgehog:focus-visible img,
 .hero-robot:hover img,
 .hero-robot:focus-visible img {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
-/* Caption */
+/* ---------- Hero captions ---------- */
 
 .hero-tag {
   position: absolute;
@@ -126,8 +129,6 @@ Pages · CSS
   transform: translateY(0);
 }
 
-/* Caption positions */
-
 .hero-scene .hero-tag {
   top: 1.5rem;
   left: 1.5rem;
@@ -142,32 +143,19 @@ Pages · CSS
   right: 0;
   bottom: 6%;
 }
- 
-@media (max-width: 760px) {
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
- 
-  .hero-visual {
-    order: -1;
-  }
-    .hero-title .script {
-    margin-left: 4rem;
-  }
+
+/* ---------- About and Projects pages ---------- */
+
+.about-page,
+.projects-page {
+  min-height: calc(100vh - var(--nav-height));
+  padding-block: 4rem 7rem;
 }
- 
-/* ---------- Selected projects ---------- */
-/* ==========================================================
-   Selected Projects
-   Aligns the heading, project cards, and CTA button.
-   The class names match the markup generated in home.js.
-   ========================================================== */
+
+/* ---------- Selected Projects ---------- */
 
 .work {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 5rem clamp(1rem, 4vw, 3.5rem) 7rem;
+  padding-block: 5rem 7rem;
 }
 
 .work-title {
@@ -179,11 +167,10 @@ Pages · CSS
 
 .work-title .script {
   color: var(--accent);
-  font-family: "Satisfy", cursive;
+  font-family: var(--font-script);
   font-weight: 400;
 }
 
-/* Three cards aligned in one row */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -193,7 +180,6 @@ Pages · CSS
   list-style: none;
 }
 
-/* Complete project card */
 .project-card {
   min-width: 0;
   overflow: hidden;
@@ -212,7 +198,6 @@ Pages · CSS
   box-shadow: 0 0.75rem 1.5rem rgb(92 23 29 / 10%);
 }
 
-/* Makes the whole card clickable */
 .project-card-link {
   display: block;
   height: 100%;
@@ -220,7 +205,6 @@ Pages · CSS
   text-decoration: none;
 }
 
-/* Project image */
 .project-card-link img {
   display: block;
   width: 100%;
@@ -231,10 +215,9 @@ Pages · CSS
 }
 
 .project-card:hover .project-card-link img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
-/* Text inside the card */
 .project-card-content {
   padding: 0.85rem 0.85rem 1rem;
 }
@@ -262,35 +245,17 @@ Pages · CSS
   line-height: 1.45;
 }
 
-/* Explore My Work button */
 .work-cta {
   display: flex;
   justify-content: flex-end;
   margin-top: 1.75rem;
 }
 
-/* Responsive layout */
-@media (max-width: 760px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card-link img {
-    height: 13rem;
-  }
-
-  .work-cta {
-    justify-content: flex-start;
-  }
-}
-
 /* ---------- Contact ---------- */
 
 .contact {
-  max-width: var(--page-width);
   min-height: 100vh;
-  margin: 0 auto;
-  padding: 8rem clamp(2rem, 6vw, 4rem);
+  padding-block: 8rem;
 }
 
 .contact-label {
@@ -363,4 +328,130 @@ Pages · CSS
   align-self: flex-end;
   min-width: 9rem;
   margin-top: 2rem;
+}
+
+/* ---------- Confirmation dialog ---------- */
+
+#success-dialog {
+  width: min(90vw, 760px);
+  padding: 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 0;
+  border-radius: 24px;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 20%);
+}
+
+#success-dialog::backdrop {
+  background: rgb(0 0 0 / 25%);
+}
+
+.dialog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  padding: 4rem 3rem;
+  text-align: center;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  font-size: 1.1rem;
+  background: #000;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dialog-check {
+  margin-bottom: 1.5rem;
+  color: #8bc34a;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dialog-card h2 {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.dialog-card p {
+  margin: 0;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero,
+  .work,
+  .contact,
+  .about-page,
+  .projects-page {
+    width: min(100% - 2rem, var(--page-width));
+  }
+
+  .hero-title .script {
+    margin-left: 4rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-link img {
+    height: 13rem;
+  }
+
+  .work-cta {
+    justify-content: flex-start;
+  }
+}
+.about-page .page-title {
+  margin: 0 0 3rem;
+  color: var(--accent);
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+}
+
+.about-page .about-text {
+  max-width: 900px;
+}
+
+.about-page .about-text p {
+  margin: 0 0 2rem;
+}
+
+.about-page .about-text h2 {
+  margin: 3rem 0 1rem;
+  color: var(--accent);
 }

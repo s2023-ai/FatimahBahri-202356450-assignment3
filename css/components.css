@@ -281,3 +281,9 @@ nts · CSS
   font-size: 0.85rem;
   text-align: center;
 }
+.footer {
+  width: min(100% - 7rem, var(--page-width));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0;
+}
